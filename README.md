@@ -1,83 +1,76 @@
 # Assignment-3
 Assignment 3 codes 
-Part 1 Data Visualization
 
-To visualize the time series for CPI inflation rate and the unemployment rate, you can use the following code:
+# Part 1 Data Visualization - Plot the time series
 
-
-
-# Assuming the data is in a data frame named 'data' with columns 'CPI' and 'Unemployment'
-​
-# Plot the time series
-plot(data$CPI, main = "CPI Inflation Rate", xlab = "Quarters", ylab = "Percent", type = "l")
-plot(data$Unemployment, main = "Unemployment Rate", xlab = "Quarters", ylab = "Percent", type = "l")
+- plot(data$CPI, main = "CPI Inflation Rate", xlab = "Quarters", ylab = "Percent", type = "l")
+- plot(data$Unemployment, main = "Unemployment Rate", xlab = "Quarters", ylab = "Percent", type = "l")
 ​
 # Calculate the sample ACFs and PACFs
-acf_cpi <- acf(data$CPI, plot = FALSE)
-acf_unemployment <- acf(data$Unemployment, plot = FALSE)
-pacf_cpi <- pacf(data$CPI, plot = FALSE)
-pacf_unemployment <- pacf(data$Unemployment, plot = FALSE)
+- acf_cpi <- acf(data$CPI, plot = FALSE)
+- acf_unemployment <- acf(data$Unemployment, plot = FALSE)
+- pacf_cpi <- pacf(data$CPI, plot = FALSE)
+- pacf_unemployment <- pacf(data$Unemployment, plot = FALSE)
 ​
 # Plot the ACFs and PACFs
-matplot(acf_cpi, main = "ACFs for CPI Inflation Rate", xlab = "Lags", ylab = "Correlation")
-matplot(pacf_cpi, main = "PACFs for CPI Inflation Rate", xlab = "Lags", ylab = "Correlation")
-matplot(acf_unemployment, main = "ACFs for Unemployment Rate", xlab = "Lags", ylab = "Correlation")
-matplot(pacf_unemployment, main = "PACFs for Unemployment Rate", xlab = "Lags", ylab = "Correlation")
+- matplot(acf_cpi, main = "ACFs for CPI Inflation Rate", xlab = "Lags", ylab = "Correlation")
+- matplot(pacf_cpi, main = "PACFs for CPI Inflation Rate", xlab = "Lags", ylab = "Correlation")
+- matplot(acf_unemployment, main = "ACFs for Unemployment Rate", xlab = "Lags", ylab = "Correlation")
+- matplot(pacf_unemployment, main = "PACFs for Unemployment Rate", xlab = "Lags", ylab = "Correlation")
 ​
 
 
-# Part 2 Univariate model estimation and selection
+# Part 2 Univariate model estimation and selection - Identify 5 candidate ARMA models to fit the inflation data and Umemployment data. Justify your answer.
 
-a. Identify 5 candidate ARMA models to fit the inflation data. Justify your answer.
+
+
+​1. Fit the ARMA models - CPI
+
+- arma_cpi_1 <- arima(data$CPI, order = c(1, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_cpi_2 <- arima(data$CPI, order = c(1, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_cpi_3 <- arima(data$CPI, order = c(2, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_cpi_4 <- arima(data$CPI, order = c(2, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_cpi_5 <- arima(data$CPI, order = c(2, 0, 2), seasonal = list(order = c(0, 1, 0), period = 4))
 
 
 
 ​
-# Fit the ARMA models
-arma_cpi_1 <- arima(data$CPI, order = c(1, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_cpi_2 <- arima(data$CPI, order = c(1, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_cpi_3 <- arima(data$CPI, order = c(2, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_cpi_4 <- arima(data$CPI, order = c(2, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_cpi_5 <- arima(data$CPI, order = c(2, 0, 2), seasonal = list(order = c(0, 1, 0), period = 4))
+2. Fit the ARMA models - UMEMPLOYMENT
+
+- arma_unemployment_1 <- arima(data$Unemployment, order = c(1, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_unemployment_2 <- arima(data$Unemployment, order = c(1, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_unemployment_3 <- arima(data$Unemployment, order = c(2, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_unemployment_4 <- arima(data$Unemployment, order = c(2, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+- arma_unemployment_5 <- arima(data$Unemployment, order = c(2, 0, 2), seasonal = list(order = c(0, 1, 0), period = 4))
 ​
 
 
-# Identify 5 candidate ARMA models to fit the unemployment data. Justify your answer.
+# Box-Jenkins method to select two candidate ARMA models for the inflation rate and Umemployment. 
 
-
-​
-# Fit the ARMA models
-arma_unemployment_1 <- arima(data$Unemployment, order = c(1, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_unemployment_2 <- arima(data$Unemployment, order = c(1, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_unemployment_3 <- arima(data$Unemployment, order = c(2, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_unemployment_4 <- arima(data$Unemployment, order = c(2, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
-arma_unemployment_5 <- arima(data$Unemployment, order = c(2, 0, 2), seasonal = list(order = c(0, 1, 0), period = 4))
-​
-
-
-c. Use the Box-Jenkins method to select two candidate ARMA models for the inflation rate. Report and interpret your results employing the corresponding plots and (estimated model) tables.
+1. Report and interpret your results employing the corresponding plots and (estimated model) tables.
+2. Use the Box-Jenkins method to select two candidate ARMA models for the unemployment rate. Report your results employing the corresponding plots and (estimated model) tables.
 
 
 
-# Select the best ARMA models
-best_arma_cpi <- auto.arima(data$CPI, seasonal = TRUE, trace = TRUE)
-summary(best_arma_cpi)
+A. Select the best ARMA models
+
+_ best_arma_cpi <- auto.arima(data$CPI, seasonal = TRUE, trace = TRUE)
+- summary(best_arma_cpi)
 ​
 
 
-# Use the Box-Jenkins method to select two candidate ARMA models for the unemployment rate. Report your results employing the corresponding plots and (estimated model) tables.
-
-
 ​
-# Select the best ARMA models
-best_arma_unemployment <- auto.arima(data$Unemployment, seasonal = TRUE, trace = TRUE)
-summary(best_arma_unemployment)
+B. Select the best ARMA models
+
+- best_arma_unemployment <- auto.arima(data$Unemployment, seasonal = TRUE, trace = TRUE)
+- summary(best_arma_unemployment)
 ​
 
 
 # Part 3 Forecast Evaluation
 
-d. Using your selected forecasting models of inflation construct the corresponding 8-step-ahead forecasts. e. Plot your forecast vs. the actual inflation data.
+d. Using your selected forecasting models of inflation construct the corresponding 8-step-ahead forecasts. 
+e. Plot your forecast vs. the actual inflation data.
 
 
 ​
