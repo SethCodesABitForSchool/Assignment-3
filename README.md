@@ -4,8 +4,11 @@ Assignment 3 codes
 # Part 1 Data Visualization - Plot the time series
 
 - plot(data$CPI, main = "CPI Inflation Rate", xlab = "Quarters", ylab = "Percent", type = "l")
+![image](https://github.com/SethCodesABitForSchool/Assignment-3/assets/147195203/4105dd3d-ca68-40a4-a0da-597018ae55a1)
+
 - plot(data$Unemployment, main = "Unemployment Rate", xlab = "Quarters", ylab = "Percent", type = "l")
-​![image](https://github.com/SethCodesABitForSchool/Assignment-3/assets/147195203/62d14367-97fc-402f-8510-175f68c5f85d)
+![image](https://github.com/SethCodesABitForSchool/Assignment-3/assets/147195203/3377f52c-e079-4e3b-9820-a2cb1e948e7a)
+
 
 # Calculate the sample ACFs and PACFs
 - acf_cpi <- acf(data$CPI, plot = FALSE)
