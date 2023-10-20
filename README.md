@@ -244,3 +244,233 @@ The MAE, MSE, and RMSE are all lower for the ARMA(1,0,0)(0,1,0)[4] model, indica
 Additionally, the AIC and BIC are both lower for the ARMA(1,0,0)(0,1,0)[4] model, suggesting that it is a better-fitting model with fewer parameters. 
 ​
 Therefore, based on these metrics, the ARMA(1,0,0)(0,1,0)[4] model is the better choice for forecasting the unemployment rate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+___________________________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data <- read.csv('C:/Users/kumbalas-INS/Downloads/work.csv')
+data2 <- read.csv('C:/Users/kumbalas-INS/Downloads/work2.csv')
+data3 <- read.csv('C:/Users/kumbalas-INS/Downloads/inf.csv')
+rm(datawork)
+colnames(data)
+datawork <- subset(data, select = c("REF_DATE", "Supplementary.unemployment.rates", "VALUE"))
+# install required packages
+install.packages("tidyverse")
+library(tidyverse)
+print(datawork$Supplementary.unemployment.rates == unique(Supplementary.unemployment.rates))
+
+filterwork <- datawork %>% filter(
+Supplementary.unemployment.rates %in% c("R4 - official rate"))
+
+library(dplyr)
+
+filterwork <- datawork %>% filter(
+  Supplementary.unemployment.rates %in% c("R4 - official rate"))
+
+is.numeric(filterwork$REF_DATE)
+is.numeric(filterwork$REF_DATE)
+
+# convert the date to numeric - install the lubridate packages to convert the date to numeric
+install.packages("lubridate")
+library(lubridate)
+
+# Convert REF_DATE to numeric - I quit - fuck u
+data$REF_DATE_NUMERIC <- as.numeric(as.Date(data$REF_DATE, "%Y-%m-%d"))
+
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+
+# Pivot the data frame from long to wide format
+quarterly_data <- filterwork %>%
+  pivot_wider(names_from = "REF_DATE", values_from = "VALUE")
+
+
+# Calculate the quarterly average of the unemployment rate
+quarterly_data <- quarterly_data %>%
+  mutate(Qtr1Avg = rowMeans(select(., ends_with("-01"))),
+         Qtr2Avg = rowMeans(select(., ends_with("-04"))),
+         Qtr3Avg = rowMeans(select(., ends_with("-07"))),
+         Qtr4Avg = rowMeans(select(., ends_with("-10"))))
+
+# Create a date sequence from the earliest year to the latest year
+year_sequence <- seq(min(unemployment_data$Date, na.rm = TRUE),
+                     max(unemployment_data$Date, na.rm = TRUE),
+                     by = "year")
+
+
+
+# data manipulation
+install.packages("quantmod")
+library(quantmod)
+library(dplyr)
+
+
+
+filterwork2 <- diff(filterwork$VALUE, k=12, type="arithmetic")
+quarterly <- diffinv(filterwork2, lag=12)
+rm(quarterly)
+
+plot.ts(filterwork2)
+
+
+
+# Assume that filterwork$DATE contains the dates of each observation
+
+# Create a vector of dates
+dates2 <- data2$DATE
+
+# Convert the dates to a time series object
+ts_object2 <- ts(dates2, frequency = 4, start = c(1976, 1))
+
+# Create a vector of filtered work values
+filtered_work_values2 <- data2$LRUNTTTTCAQ156S
+
+# Create a time series object for the filtered work values
+
+dt3 <- ts(data33, frequency = 4, start = c(1976, 1))
+
+plot(ts_filtered_work2)
+
+# Create a vector of dates
+dates <- filterwork$REF_DATE
+
+# Convert the dates to a time series object
+ts_object <- ts(dates, frequency = 4, start = c(1976, 1))
+
+# Create a vector of filtered work values
+filtered_work_values <- filterwork$VALUE
+
+# Create a time series object for the filtered work values
+ts_filtered_work <- ts(filtered_work_values, frequency = 4, start = c(1976, 1))
+
+
+par(mfrow= c(1,1))
+plot(ts_filtered_work2, col= "red", type= "l")
+lines(quarterly3, type= "l")
+
+data33 <- subset(data3, select = c("CPALTT01CAM659N"))
+
+quarterly4 <- subset(dt3, select = c("CPALTT01CAM659N"))
+plot.ts(dt3, ylab= "CPI INF", xlab= "TIME")
+
+
+
+data34 <- stats::filter(dt3, select= c("CPALTT01CAM659N"))
+
+
+
+
+monthly <- ts(filterwork, start = c(1976, 1), frequency = 12)
+quarterly <- aggregate(monthly, nfrequency = 4)
+
+quarterly3 <- subset(quarterly, select = c("VALUE"))
+
+plot.ts(quarterly3, type= "l")
+
+
+
+# Assume 'ts_filtered_work2' and 'quarterly3' are the time series you want to plot
+
+# Set up the plotting region to contain two plots side by side
+par(mfrow= c(1,1))
+
+# Plot the first time series
+plot(ts_filtered_work2, col= "red", type= "l", main="UNEMPLOYMENT Time Series QTLY", xlab="TIME", ylab="UNEMPLOYMENT RATE")
+
+# Plot the second time series in the same plotting region
+lines(quarterly3, col= "blue", type= "l", main="Time Series 2", xlab="", ylab="")
+
+plot.ts(dt3, main= "CPI TIME SERIES QRTLY", xlab="TIME", ylab="CPI")
+
+
+acf_cpi <- acf(data33$CPALTT01CAM659N, lag.max = 48, plot = FALSE)
+acf_unemployment <- acf(data2$LRUNTTTTCAQ156S, lag.max = 48, plot = FALSE)
+pacf_cpi <- pacf(data33$CPALTT01CAM659N, lag.max = 48, plot = FALSE)
+pacf_unemployment <- pacf(data2$LRUNTTTTCAQ156S, lag.max = 48, plot = FALSE)
+
+par(mfrow= c(1,2))
+plot(acf_cpi, main= "ACF CPI", col= "red")
+plot(acf_unemployment, main= "PACF UNEMPLOYMENT", col= "blue")
+
+par(mfrow= c(1,2))
+plot(acf_cpi, main= "ACF CPI", col= "red")
+plot(pacf_cpi, main= "PACF CPI", col= "blue")
+
+par(mfrow= c(1,2))
+plot(acf_unemployment, main= "ACF unemployment", col= "red")
+plot(pacf_unemployment, main= "PACF unemployment", col= "blue")
+
+
+# Fit the ARMA models - CPI
+
+arma_cpi_1 <- arima(data33$CPALTT01CAM659N, order = c(1, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_cpi_2 <- arima(data33$CPALTT01CAM659N, order = c(1, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_cpi_3 <- arima(data33$CPALTT01CAM659N, order = c(2, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_cpi_4 <- arima(data33$CPALTT01CAM659N, order = c(2, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_cpi_5 <- arima(data33$CPALTT01CAM659N, order = c(2, 0, 2), seasonal = list(order = c(0, 1, 0), period = 4))
+
+
+
+
+best_arma_cpi <- auto.arima(data33$CPALTT01CAM659N, seasonal = TRUE, trace = TRUE)
+
+summary(arma_cpi_5)
+
+Fit the ARMA models - UMEMPLOYMENT
+
+arma_unemployment_1 <- arima(data2$LRUNTTTTCAQ156S, order = c(1, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_unemployment_2 <- arima(data2$LRUNTTTTCAQ156S, order = c(1, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_unemployment_3 <- arima(data2$LRUNTTTTCAQ156S, order = c(2, 0, 0), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_unemployment_4 <- arima(data2$LRUNTTTTCAQ156S, order = c(2, 0, 1), seasonal = list(order = c(0, 1, 0), period = 4))
+arma_unemployment_5 <- arima(data2$LRUNTTTTCAQ156S, order = c(2, 0, 2), seasonal = list(order = c(0, 1, 0), period = 4))
+
+
+
+
+
+
+
+
