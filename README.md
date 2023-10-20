@@ -19,9 +19,12 @@ Assignment 3 codes
 # Plot the ACFs and PACFs
 - matplot(acf_cpi, main = "ACFs for CPI Inflation Rate", xlab = "Lags", ylab = "Correlation")
 - matplot(pacf_cpi, main = "PACFs for CPI Inflation Rate", xlab = "Lags", ylab = "Correlation")
+![image](https://github.com/SethCodesABitForSchool/Assignment-3/assets/147195203/ab6c5b9c-2781-43a7-889f-907719fba701)
+
 - matplot(acf_unemployment, main = "ACFs for Unemployment Rate", xlab = "Lags", ylab = "Correlation")
 - matplot(pacf_unemployment, main = "PACFs for Unemployment Rate", xlab = "Lags", ylab = "Correlation")
-​
+​![image](https://github.com/SethCodesABitForSchool/Assignment-3/assets/147195203/c34250ec-491c-4f88-9376-12fd8af34659)
+
 
 
 # Part 2 Univariate model estimation and selection - Identify 5 candidate ARMA models to fit the inflation data and Umemployment data. Justify your answer.
