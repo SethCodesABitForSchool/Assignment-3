@@ -5,7 +5,8 @@ Assignment 3 codes
 
 - plot(data$CPI, main = "CPI Inflation Rate", xlab = "Quarters", ylab = "Percent", type = "l")
 - plot(data$Unemployment, main = "Unemployment Rate", xlab = "Quarters", ylab = "Percent", type = "l")
-​
+​![image](https://github.com/SethCodesABitForSchool/Assignment-3/assets/147195203/62d14367-97fc-402f-8510-175f68c5f85d)
+
 # Calculate the sample ACFs and PACFs
 - acf_cpi <- acf(data$CPI, plot = FALSE)
 - acf_unemployment <- acf(data$Unemployment, plot = FALSE)
