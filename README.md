@@ -1,4 +1,4 @@
-# Times Series Analysis - Part 3
+# Times Series Analysis - Part 3 - Please do not Use/Cite
 Assignment 3 codes 
 
 # Part 1 Data Visualization - Plot the time series
