@@ -1,4 +1,4 @@
-# Assignment-3
+# Times Series Analysis - Part 3
 Assignment 3 codes 
 
 # Part 1 Data Visualization - Plot the time series
